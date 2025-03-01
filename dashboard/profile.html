@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CloudStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar - Same as dashboard -->
+        <aside class="bg-white w-64 hidden md:flex flex-col border-r">
+            <div class="p-4 border-b animate-fade-in">
+                <a href="../index.html" class="flex items-center">
+                    <i class="fas fa-cloud text-blue-500 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">CloudStore</span>
+                </a>
+            </div>
+            <nav class="flex-1 p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-home mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="files.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-folder mr-3"></i>
+                        <span>My Files</span>
+                    </a>
+                    <a href="shared.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-share-alt mr-3"></i>
+                        <span>Shared</span>
+                    </a>
+                    <a href="settings.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="p-4 border-t">
+                <a href="profile.html" class="flex items-center">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-8 h-8 rounded-full">
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">John Doe</p>
+                        <p class="text-xs text-gray-500">Pro Plan</p>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between p-4">
+                    <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-600 hover:text-gray-900 transition-colors">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <a href="../login.html" class="text-gray-600 hover:text-gray-900 transition-all nav-link">Sign Out</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Profile Content -->
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <!-- Profile Header -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 animate-fade-in">
+                    <div class="flex items-center">
+                        <div class="relative group">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-24 h-24 rounded-full transition-transform group-hover:scale-105">
+                            <button class="absolute bottom-0 right-0 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="ml-6 flex-1">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h1 class="text-2xl font-bold text-gray-900">John Doe</h1>
+                                    <p class="text-gray-600">john@example.com</p>
+                                </div>
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all hover-scale">
+                                    Edit Profile
+                                </button>
+                            </div>
+                            <p class="text-gray-500 mt-2">Product Designer & Developer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Storage Usage -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow-sm p-6 animate-slide-up" style="animation-delay: 0.1s">
+                        <h2 class="text-lg font-semibold text-gray-900 mb-4">Storage Usage</h2>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Used Space</span>
+                                <span>75 GB of 100 GB</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full w-3/4 transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                        <button class="text-blue-500 hover:text-blue-600 text-sm transition-colors">
+                            Upgrade Storage
+                        </button>
+                    </div>
+
+                    <!-- Active Devices -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 animate-slide-up" style="animation-delay: 0.2s">
+                        <h2 class="text-lg font-semibold text-gray-900 mb-4">Active Devices</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-laptop text-gray-400 text-xl"></i>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">MacBook Pro</p>
+                                        <p class="text-xs text-gray-500">Last active: Just now</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600 transition-colors">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt text-gray-400 text-xl"></i>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">iPhone 12</p>
+                                        <p class="text-xs text-gray-500">Last active: 2 hours ago</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600 transition-colors">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-lg shadow-sm p-6 animate-slide-up" style="animation-delay: 0.3s">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center text-sm">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-upload text-blue-500"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-gray-900">Uploaded <span class="font-medium">Project_Final.pdf</span></p>
+                                <p class="text-gray-500">2 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-share text-green-500"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-gray-900">Shared <span class="font-medium">Meeting_Notes.docx</span> with Team</p>
+                                <p class="text-gray-500">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden" id="mobile-sidebar-overlay"></div>
+    <aside class="fixed inset-y-0 left-0 bg-white w-64 transform -translate-x-full transition-transform duration-300 ease-in-out z-20" id="mobile-sidebar">
+        <!-- Mobile sidebar content - same as desktop sidebar -->
+    </aside>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 animate-scale">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Edit Profile</h3>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" name="name" value="John Doe" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" name="email" value="john@example.com" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                        <textarea name="bio" rows="3"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">Product Designer & Developer</textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Context Menu -->
+    <div id="device-context-menu" class="fixed hidden bg-white rounded-lg shadow-lg py-2 w-48 animate-scale">
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-trash mr-2 text-red-500"></i> Remove Device
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-pencil-alt mr-2"></i> Rename Device
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-chart-line mr-2"></i> View Activity
+        </button>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Files - CloudStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uppy/core@3.1.2/dist/style.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uppy/dashboard@3.4.1/dist/style.min.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar - Same as dashboard -->
+        <aside class="bg-white w-64 hidden md:flex flex-col border-r">
+            <div class="p-4 border-b">
+                <a href="../index.html" class="flex items-center">
+                    <i class="fas fa-cloud text-blue-500 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">CloudStore</span>
+                </a>
+            </div>
+            <nav class="flex-1 p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                        <i class="fas fa-home mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="files.html" class="flex items-center p-3 text-gray-700 bg-gray-100 rounded-lg">
+                        <i class="fas fa-folder mr-3"></i>
+                        <span>My Files</span>
+                    </a>
+                    <a href="shared.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                        <i class="fas fa-share-alt mr-3"></i>
+                        <span>Shared</span>
+                    </a>
+                    <a href="settings.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="p-4 border-t">
+                <a href="profile.html" class="flex items-center">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-8 h-8 rounded-full">
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">John Doe</p>
+                        <p class="text-xs text-gray-500">Pro Plan</p>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Top Navigation - Same as dashboard -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between p-4">
+                    <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-bell text-xl"></i>
+                        </button>
+                        <button class="md:hidden">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-8 h-8 rounded-full">
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Files Content -->
+            <div class="p-6">
+                <!-- Actions Bar -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+                    <div class="flex items-center space-x-2 mb-4 sm:mb-0">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center">
+                            <i class="fas fa-upload mr-2"></i>
+                            Upload Files
+                        </button>
+                        <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50">
+                            <i class="fas fa-folder-plus mr-2"></i>
+                            New Folder
+                        </button>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <input type="text" placeholder="Search files..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button class="ml-2 text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button class="ml-2 text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Drag & Drop Zone -->
+                <div id="drop-zone" class="upload-area mb-6 p-8 text-center">
+                    <div class="max-w-xl mx-auto">
+                        <i class="fas fa-cloud-upload-alt text-blue-500 text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Drag & Drop Files Here</h3>
+                        <p class="text-gray-500 mb-4">or</p>
+                        <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+                            Browse Files
+                        </button>
+                        <p class="text-sm text-gray-500 mt-2">Maximum file size: 2GB</p>
+                    </div>
+                </div>
+
+                <!-- Files Grid -->
+                <div class="bg-white rounded-lg shadow-sm">
+                    <!-- Breadcrumb -->
+                    <div class="p-4 border-b">
+                        <div class="flex items-center space-x-2 text-sm">
+                            <a href="#" class="text-gray-600 hover:text-blue-500">My Files</a>
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <a href="#" class="text-gray-600 hover:text-blue-500">Documents</a>
+                        </div>
+                    </div>
+
+                    <!-- Grid/List View -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+                        <!-- Folder -->
+                        <div class="p-4 border rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-folder text-yellow-500 text-3xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Projects</h4>
+                                        <p class="text-sm text-gray-500">15 items</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PDF File -->
+                        <div class="p-4 border rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 text-3xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Report.pdf</h4>
+                                        <p class="text-sm text-gray-500">2.5 MB</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Image File -->
+                        <div class="p-4 border rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-image text-green-500 text-3xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Banner.jpg</h4>
+                                        <p class="text-sm text-gray-500">1.8 MB</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Document File -->
+                        <div class="p-4 border rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-word text-blue-500 text-3xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Contract.docx</h4>
+                                        <p class="text-sm text-gray-500">524 KB</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden" id="mobile-sidebar-overlay"></div>
+    <aside class="fixed inset-y-0 left-0 bg-white w-64 transform -translate-x-full transition-transform duration-300 ease-in-out z-20" id="mobile-sidebar">
+        <!-- Mobile sidebar content - same as desktop sidebar -->
+    </aside>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden fixed bg-white rounded-lg shadow-lg py-2 w-48">
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-download mr-2"></i> Download
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-share mr-2"></i> Share
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-pen mr-2"></i> Rename
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-copy mr-2"></i> Copy
+        </button>
+        <button class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-trash mr-2"></i> Delete
+        </button>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@uppy/core@3.1.2/dist/uppy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@uppy/dashboard@3.4.1/dist/dashboard.min.js"></script>
+    <script src="js/files.js"></script>
+</body>
+</html>

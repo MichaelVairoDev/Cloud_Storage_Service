@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - CloudStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="text-center animate-fade-in">
+            <div class="mb-8 animate-bounce">
+                <i class="fas fa-cloud text-blue-500 text-6xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">You're Offline</h1>
+            <p class="text-gray-600 mb-8">Don't worry, you can still access your cached files and queue actions for when you're back online.</p>
+            
+            <div class="space-y-4">
+                <button onclick="checkConnection()" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all hover-scale w-full sm:w-auto">
+                    <i class="fas fa-sync-alt mr-2"></i>
+                    Try Again
+                </button>
+                
+                <a href="/dashboard/files.html" class="inline-block bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-all hover-scale w-full sm:w-auto">
+                    <i class="fas fa-folder mr-2"></i>
+                    View Cached Files
+                </a>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">While You're Offline You Can:</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-sm animate-slide-up hover-card">
+                        <i class="fas fa-file text-blue-500 text-2xl mb-4"></i>
+                        <h3 class="font-medium text-gray-900 mb-2">Access Recent Files</h3>
+                        <p class="text-gray-600 text-sm">View and work with your recently accessed files</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm animate-slide-up hover-card" style="animation-delay: 0.1s">
+                        <i class="fas fa-upload text-blue-500 text-2xl mb-4"></i>
+                        <h3 class="font-medium text-gray-900 mb-2">Queue Uploads</h3>
+                        <p class="text-gray-600 text-sm">Prepare files to upload when back online</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm animate-slide-up hover-card" style="animation-delay: 0.2s">
+                        <i class="fas fa-share-alt text-blue-500 text-2xl mb-4"></i>
+                        <h3 class="font-medium text-gray-900 mb-2">Queue Share Actions</h3>
+                        <p class="text-gray-600 text-sm">Prepare files to share when connection returns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="status-toast" class="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 hidden animate-slide-up">
+        <div class="flex items-center">
+            <i class="fas fa-wifi text-gray-500 mr-3"></i>
+            <p class="text-sm font-medium text-gray-900" id="status-message"></p>
+        </div>
+    </div>
+
+    <script>
+        // Check connection status
+        function checkConnection() {
+            const toast = document.getElementById('status-toast');
+            const message = document.getElementById('status-message');
+            
+            if (navigator.onLine) {
+                message.textContent = 'You are back online!';
+                toast.classList.remove('hidden');
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                message.textContent = 'Still offline. Please try again later.';
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3000);
+            }
+        }
+
+        // Add hover animations
+        document.querySelectorAll('.hover-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.classList.add('transform', 'scale-[1.02]', 'shadow-md');
+            });
+            card.addEventListener('mouseout', () => {
+                card.classList.remove('transform', 'scale-[1.02]', 'shadow-md');
+            });
+        });
+
+        // Listen for online status
+        window.addEventListener('online', () => {
+            const toast = document.getElementById('status-toast');
+            const message = document.getElementById('status-message');
+            message.textContent = 'You are back online!';
+            toast.classList.remove('hidden');
+            setTimeout(() => window.location.reload(), 1000);
+        });
+    </script>
+</body>
+</html>
